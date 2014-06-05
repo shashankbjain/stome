@@ -19,6 +19,15 @@ public class Order
 	protected OrderStatusFV status;
 	protected String picker;
 	
+	public Order()
+	{
+		orderNumber = "";
+		storeName = "";
+		weight = 0d;
+		stomeAmount = 0d;
+		picker = "";
+	}
+	
 	public void setOrderNumber(String orderNumber)
 	{
 		this.orderNumber = orderNumber;
@@ -119,5 +128,13 @@ public class Order
 	{
 		return Integer.toString(
 				Math.abs(this.orderNumber.hashCode()));
+	}
+	
+	public String toString()
+	{
+		String  orderString = orderNumber + storeName + address  + weight +
+				 + stomeAmount + status.name() + picker;
+		
+		return orderString;
 	}
 }

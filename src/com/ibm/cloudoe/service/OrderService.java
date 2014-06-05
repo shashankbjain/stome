@@ -23,12 +23,15 @@ public class OrderService
 	
 	synchronized public List<Order> getAllOrders()
 	{
+		System.out.println(" OrderService:: getAllOrders  START");
 		List<Order> orderList = new ArrayList<Order>();
 		Iterator<Order> itr = orderMap.values().iterator();
+		System.out.println(" OrderService:: getAllOrders  OrderMap Size " + orderMap.size());
 		while(itr.hasNext())
 		{
 			Order o = itr.next();
 			orderList.add(o);
+			System.out.println(" OrderService:: getAllOrders  " + o.toString());		
 		}
 		
 		return orderList;
@@ -38,6 +41,7 @@ public class OrderService
 	synchronized public List<Order> getAllOrdersByPostalCode(
 			String postalCode)
 	{
+		System.out.println(" OrderService:: getAllOrdersByPostalCode  START");		
 		List<Order> orderList = new ArrayList<Order>();
 		
 		Iterator<Order> itr = orderMap.values().iterator();
@@ -46,6 +50,8 @@ public class OrderService
 			Order o = itr.next();
 			if(o.getDeliveryPostalCode().equals(postalCode))
 				orderList.add(o);
+			
+			System.out.println(" OrderService:: getAllOrdersByPostalCode  Order Detail " + o.toString());
 		}
 		return orderList;
 	}
@@ -53,6 +59,7 @@ public class OrderService
 	synchronized public List<Order> getAllOrdersByPostalCodeAndStatus(
 			String postalCode, OrderStatusFV orderStatus)
 	{
+		System.out.println(" OrderService:: getAllOrdersByPostalCodeAndStatus  START");		
 		List<Order> orderList = new ArrayList<Order>();
 		
 		Iterator<Order> itr = orderMap.values().iterator();
@@ -62,6 +69,8 @@ public class OrderService
 			if(o.getDeliveryPostalCode().equals(postalCode)
 					&& o.getStatus().equals(orderStatus))
 				orderList.add(o);
+			
+			System.out.println(" OrderService:: getAllOrdersByPostalCodeAndStatus  orders " + o.toString());
 		}
 		return orderList;
 	}
@@ -69,6 +78,7 @@ public class OrderService
 	synchronized public List<Order> processOrderPickupRequest(
 			List<String> orderNumberList, String pickerName)
 	{
+		System.out.println(" OrderService:: processOrderPickupRequest 	pickerName = " + pickerName);	
 		List<Order> pickupOrderList = new ArrayList<Order>();
 		
 		for(String tcOrderId : orderNumberList)
@@ -76,10 +86,12 @@ public class OrderService
 			Order ord = orderMap.get(tcOrderId);
 			if(ord.getStatus().equals(OrderStatusFV.AVAILABLE))
 			{
+				System.out.println(" OrderService:: processOrderPickupRequest :: Order Status is available");				
 				pickupOrderList.add(ord);
 				ord.setStatus(OrderStatusFV.READY);
 				ord.setPicker("pickerName");
 			}
+			System.out.println(" OrderService:: processOrderPickupRequest 	Order Detail = " + ord.toString());			
 		}
 		
 		return pickupOrderList;
