@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.commons.lang.StringUtils;
+
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -193,6 +195,9 @@ public class StomeTwitterServicesImpl implements IStomeTwitterServices {
 			int numTries = 0;
 			while ((tinyUrl = br.readLine()) != null) {
 
+				if(!StringUtils.isEmpty(tinyUrl)) {
+					break ;
+				}
 				numTries++;
 				if (numTries > 15) {
 					tinyUrl = " Timed out generating a tiny url";

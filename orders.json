@@ -1,0 +1,10 @@
+{"orderNumber":"ORD1000","storeName":"WALMART1","address1":"1217 Shadowood Pkwy","city":"Atlanta", "state":"GA","postalCode":"30339","contact":"+14044836290","weight":10.0,"stomeAmount":1.0}
+{"orderNumber":"ORD1001","storeName":"WALMART1","address1":"1345 Akers Mill Rd SE", "city":"Atlanta", "state":"GA", "postalCode":"30339","contact":"+14048627247","weight":20.0,"stomeAmount":2.0}
+{"orderNumber":"ORD1002","storeName":"WALMART2","address1":"5595  Windward Pkwy","city":"alpharetta","state":"GA","postalCode":"30004","contact":"+16788993843","weight":30.0,"stomeAmount":3.0}
+{"orderNumber":"ORD1003","storeName":"TARGET1","address1":"2 South Main Street", "city":"alpharetta","state":"GA","postalCode":"30009","contact":"+12142886845","weight":40.0,"stomeAmount":4.0}
+{"orderNumber":"ORD1004","storeName":"TARGET1","address1":"216 South Main Street","city":"alpharetta","state":"GA","postalCode":"30009","contact":"+14046420357","weight":50.0,"stomeAmount":2.0}
+{"orderNumber":"ORD1005","storeName":"TARGET2","address1":"190 Marietta St NW","city":"Marietta","state":"GA","postalCode":"30303","contact":"+16785200846","weight":60.0,"stomeAmount":2.0}
+{"orderNumber":"ORD1006","storeName":"TARGET2","address1":"21 Marietta St","city":"Marietta","state":"GA","postalCode":"30303","contact":"+17062890232","weight":70.0,"stomeAmount":1.0}
+{"orderNumber":"ORD1007","storeName":"TARGET2","address1":"1718 Baker St","city":"Marietta","state":"GA","postalCode":"30303","contact":"+14048627247","weight":80.0,"stomeAmount":2.0}
+{"orderNumber":"ORD1008","storeName":"Kohls1","address1":"2550 Austell Rd","city":"Austell","state":"GA","postalCode":"30106","contact":"+16787642192","weight":90.0,"stomeAmount":3.0}
+{"orderNumber":"ORD1009","storeName":"Kohls1","address1":"1331 Holmbush Rd","city":"Austell","state":"GA","postalCode":"30106","contact":"+16788993843","weight":100.0,"stomeAmount":2.0}

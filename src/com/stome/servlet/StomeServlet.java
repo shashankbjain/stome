@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 
+import com.ibm.cloudoe.service.StoreAndOrderLoader;
 import com.stome.twitter.StomeTwitterServicesImpl;
 
 /**
@@ -29,6 +30,8 @@ public class StomeServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
+		
+		StoreAndOrderLoader.initialize(); 
 		TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
 		twitterStream.addListener(new StomeTwitterServicesImpl());
 		// sample() method internally creates a thread which manipulates
