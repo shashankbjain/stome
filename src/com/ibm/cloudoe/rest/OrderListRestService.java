@@ -22,7 +22,11 @@ public class OrderListRestService
 		OrderService os = new OrderService();
         List<Order>  orderList = os.getAllOrders();
         
-        String jsonStr = new JSONArray().toJSONString(orderList);
+        
+        JSONArray array = new JSONArray() ;
+        array.addAll(orderList) ;
+        
+        String jsonStr = array.toJSONString() ;
 		System.out.println("OrderListRestService:: getOrderList jsonString " +  jsonStr);        
         return jsonStr;
 	}
