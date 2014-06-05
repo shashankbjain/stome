@@ -1,0 +1,12 @@
+applications:
+- services:
+  - Stome DevOps
+  - LogAnalysis-xf
+  - Twilio-yi
+  disk_quota: 1024M
+  host: STOME
+  name: STOME
+  path: webStarterApp.war
+  domain: ng.bluemix.net
+  instances: 1
+  memory: 1024M

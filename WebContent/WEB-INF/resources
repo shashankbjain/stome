@@ -1,0 +1,4 @@
+com.ibm.cloudoe.samples.HelloResource
+com.ibm.cloudoe.rest.OrderListRestService
+com.ibm.cloudoe.rest.OrderListByZipRestService
+com.ibm.cloudoe.rest.PickupOrderRestService
