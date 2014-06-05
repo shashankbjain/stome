@@ -43,7 +43,7 @@ public class StomeTwitterServicesImpl implements IStomeTwitterServices {
 
 			Twitter twt = getTwitterInstance();
 
-			String stomeOrderListUrl = "http://stome.ng.bluemix.net/getOrderList/byzipcode?zipcode=";
+			String stomeOrderListUrl = "http://stome.ng.bluemix.net/stome/getOrderList/byzipcode?zipcode=";
 
 			String tinyUrl = createTinyUrl(stomeOrderListUrl + zipCode);
 
