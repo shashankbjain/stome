@@ -31,11 +31,6 @@ public class StoreAndOrderLoader
 	public static ConcurrentHashMap<String, Store> storeMap = 
 		new ConcurrentHashMap<String, Store>();
 	
-	public static void main(String[] args)
-	{
-		initialize();
-	}
-	
 	public static void initialize()
 	{	
 		loadStores("stores.json");
@@ -53,40 +48,56 @@ public class StoreAndOrderLoader
 			while ((line = br.readLine()) != null)
 			{
 				JSONObject jsonObject = (JSONObject) parser.parse(line);
+				String storeName = jsonObject.get(
+						JasonParmFV.STORENAME.value()).toString();
+				String address1 = jsonObject.get(
+						JasonParmFV.ADDRESS1.value()).toString();
+				String city = jsonObject.get(
+						JasonParmFV.CITY.value()).toString();
+				String state = jsonObject.get(
+						JasonParmFV.STATE.value()).toString();
+				String postalCode = jsonObject.get(
+						JasonParmFV.POSTALCODE.value()).toString();
+				String contact = jsonObject.get(
+						JasonParmFV.CONTACT.value()).toString();
+				
 				Store store = new Store();
-				store.setStoreName(jsonObject.get(
-					JasonParmFV.STORENAME.value()).toString());
+				store.setStoreName(storeName);
 				Address stAddress = new Address();
-				stAddress.setAddress1(jsonObject.get(
-						JasonParmFV.ADDRESS1.value()).toString());
-				stAddress.setCity(jsonObject.get(
-						JasonParmFV.CITY.value()).toString());
-				stAddress.setState(jsonObject.get(
-						JasonParmFV.STATE.value()).toString());
-				stAddress.setPostalCode(jsonObject.get(
-						JasonParmFV.POSTALCODE.value()).toString());
-				stAddress.setContact(jsonObject.get(
-						JasonParmFV.CONTACT.value()).toString());
+				stAddress.setAddress1(address1);
+				stAddress.setCity(city);
+				stAddress.setState(state);
+				stAddress.setPostalCode(postalCode);
+				stAddress.setContact(contact);
 				store.setAddress(stAddress); 
-				storeMap.put(jsonObject.get(
-						JasonParmFV.STORENAME.value()).toString(), store);
+				
+				storeMap.put(storeName, store);
+				
+				System.out.println("Store Name = " + storeName
+						+ ", Address1 = " + address1 + ", City = " + city 
+						+ ", State = " + state + ", Postal Code = " + postalCode
+						+ ", Contact = " + contact);
 			}
 			br.close();
 		}
 		catch (FileNotFoundException ex)
 		{
+			System.out.println("FileNotFoundException");
 			ex.printStackTrace();
 		}
 		catch (IOException ex)
 		{
+			System.out.println("IOException");
 			ex.printStackTrace();
 		}
 		catch (ParseException ex)
 		{
+			System.out.println("ParseException");
 			ex.printStackTrace();
 		}
 		catch (NullPointerException ex)
 		{
+			System.out.println("NullPointerException");
 			ex.printStackTrace();
 		}
 	}
@@ -102,52 +113,71 @@ public class StoreAndOrderLoader
 			while ((line = br.readLine()) != null)
 			{
 				JSONObject jsonObject = (JSONObject) parser.parse(line);
-				Order ord = new Order();
-				ord.setOrderNumber(jsonObject.get(
-					JasonParmFV.ORDERNUMBER.value()).toString());
+							
+				String orderNumber = jsonObject.get(
+						JasonParmFV.ORDERNUMBER.value()).toString();
+				String storeName = jsonObject.get(
+						JasonParmFV.STORENAME.value()).toString();
+				String address1 = jsonObject.get(
+						JasonParmFV.ADDRESS1.value()).toString();
+				String city = jsonObject.get(
+						JasonParmFV.CITY.value()).toString();
+				String state = jsonObject.get(
+						JasonParmFV.STATE.value()).toString();
+				String postalCode = jsonObject.get(
+						JasonParmFV.POSTALCODE.value()).toString();
+				String contact = jsonObject.get(
+						JasonParmFV.CONTACT.value()).toString();
+				Double weight = (Double)jsonObject.get(
+						JasonParmFV.WEIGHT.value());
+				Double stomeAmount = (Double) jsonObject.get(
+						JasonParmFV.STOMEAMOUNT.value());
 				
-				ord.setStoreName(jsonObject.get(
-						JasonParmFV.STORENAME.value()).toString());
-				ord.setStore(storeMap.get(ord.getStoreName()));
+				Order ord = new Order();
+				ord.setOrderNumber(orderNumber);
+				ord.setStoreName(storeName);
+				ord.setStore(storeMap.get(storeName));
 				
 				Address dAddress = new Address();
-				dAddress.setAddress1(jsonObject.get(
-						JasonParmFV.ADDRESS1.value()).toString());
-				dAddress.setCity(jsonObject.get(
-						JasonParmFV.CITY.value()).toString());
-				dAddress.setState(jsonObject.get(
-						JasonParmFV.STATE.value()).toString());
-				dAddress.setPostalCode(jsonObject.get(
-						JasonParmFV.POSTALCODE.value()).toString());
-				dAddress.setContact(jsonObject.get(
-						JasonParmFV.CONTACT.value()).toString());
+				dAddress.setAddress1(address1);
+				dAddress.setCity(city);
+				dAddress.setState(state);
+				dAddress.setPostalCode(postalCode);
+				dAddress.setContact(contact);
 				ord.setAddress(dAddress); 
 				
-				ord.setWeight((Double)jsonObject.get(
-						JasonParmFV.WEIGHT.value()));
-						
-				ord.setStomeAmount((Double) jsonObject.get(
-						JasonParmFV.STOMEAMOUNT.value()));
+				ord.setWeight(weight);
+				ord.setStomeAmount(stomeAmount);
+				
 				ord.setStatus(OrderStatusFV.AVAILABLE);
-				orderMap.put(jsonObject.get(
-						JasonParmFV.STORENAME.value()).toString(), ord);
+				orderMap.put(orderNumber, ord);
+				
+				System.out.println("Order Number = " + orderNumber
+						+ ", Store Name = " + storeName + ", Address1 = " + address1 
+						+ ", City = " + city + ", State = " + state 
+						+ ", Postal Code = " + postalCode + ", Contact = " + contact
+						+ ", Weight = " + weight + ", Stome Amount = " + stomeAmount);
 			}
 			br.close();
 		}
 		catch (FileNotFoundException ex)
 		{
+			System.out.println("FileNotFoundException");
 			ex.printStackTrace();
 		}
 		catch (IOException ex)
 		{
+			System.out.println("IOException");
 			ex.printStackTrace();
 		}
 		catch (ParseException ex)
 		{
+			System.out.println("ParseException");
 			ex.printStackTrace();
 		}
 		catch (NullPointerException ex)
 		{
+			System.out.println("NullPointerException");
 			ex.printStackTrace();
 		}
 	}
