@@ -20,6 +20,9 @@
     	<pathelement location="WebContent/WEB-INF/lib/wink-1.2.1-incubating.jar"/>
     	<pathelement location="WebContent/WEB-INF/lib/twilio-java-3.4.5.jar"/>
     	<pathelement location="WebContent/WEB-INF/lib/servlet-api-3.0.1.jar"/>    	
+		<pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/> 
+		<pathelement location="WebContent/WEB-INF/lib/jackson-all-1.8.10"/> 
+	
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -50,6 +53,8 @@
 	  	<fileset dir="WebContent">
 	  		<include name="index.html"/>
 	  		<include name="app.js"/>
+			<include name="tiny.html"/>
+	  		<include name="tinyurl.js"/>
 	  		<include name="style.css"/>
 			<include name="ux/*/*.*"/>
 			<include name="resources/*/*.*"/>
