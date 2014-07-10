@@ -9,6 +9,7 @@ import com.ibm.cloudoe.service.OrderService;
 import org.apache.wink.json4j.JSONObject;
 import com.ibm.cloudoe.domain.Order;
 import java.util.Arrays;
+import org.codehaus.jackson.map.ObjectMapper;
 
 //This class define the /getOrderList RESTful API to fetch all orders information
 @Path("/getOrderList")
@@ -21,13 +22,17 @@ public class OrderListRestService
 		System.out.println("OrderListRestService:: getOrderList");
 		OrderService os = new OrderService();
         List<Order>  orderList = os.getAllOrders();
-        
-        
-        JSONArray array = new JSONArray() ;
-        array.addAll(orderList) ;
-        
-        String jsonStr = array.toJSONString() ;
-		System.out.println("OrderListRestService:: getOrderList jsonString " +  jsonStr);        
+		String jsonStr = "";
+		try
+		{
+			ObjectMapper mapper = new ObjectMapper();
+			jsonStr = mapper.writeValueAsString(orderList);	
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Exception while coverting object to json " +  ex);   		
+		}
+		System.out.println("OrderListRestService:: getOrderList jsonString " +  jsonStr);   		
         return jsonStr;
 	}
 }
