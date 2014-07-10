@@ -118,16 +118,27 @@ public class Order
 	}
 	
 	public String getPickUpConfirmationCode()
-	{
-		String confirmCodeString = picker + orderNumber;
-		return Integer.toString(
+	{	
+		if( OrderStatusFV.READY(this.status)
+				|| OrderStatusFV.PICKED(this.status)
+				|| OrderStatusFV.DELIVERED(this.status))
+		{
+			String confirmCodeString = picker + this.store.storeName;
+			return Integer.toString(
 				Math.abs(confirmCodeString.hashCode()));
+		}
+		return "";
 	}
 	
 	public String getDeliveryConfirmationCOde()
 	{
-		return Integer.toString(
+		if( OrderStatusFV.PICKED(this.status)
+				|| OrderStatusFV.DELIVERED(this.status))
+		{
+			return Integer.toString(
 				Math.abs(this.orderNumber.hashCode()));
+		}
+		return "";
 	}
 	
 	public String toString()
