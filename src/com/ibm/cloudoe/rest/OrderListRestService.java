@@ -19,7 +19,7 @@ public class OrderListRestService
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getOrderList() 
 	{
-		System.out.println("OrderListRestService:: getOrderList");
+		System.out.println("OrderListRestService::getOrderList");
 		OrderService os = new OrderService();
         List<Order>  orderList = os.getAllOrders();
 		String jsonStr = "";

@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.simple.JSONArray;
-
+import org.codehaus.jackson.map.ObjectMapper;
 import com.ibm.cloudoe.domain.Order;
 import com.ibm.cloudoe.service.OrderService;
 
@@ -32,7 +32,16 @@ public class OrderListByZipRestService
 		OrderService os = new OrderService();
         List<Order>  orderList = os.getAllOrdersByPostalCode(zipcode);
         
-        String jsonStr = new JSONArray().toJSONString(orderList);
+        String jsonStr = "";
+		try
+		{
+			ObjectMapper mapper = new ObjectMapper();
+			jsonStr = mapper.writeValueAsString(orderList);	
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Exception while coverting object to json " +  ex);   		
+		}
 		System.out.println("OrderListRestService:: getOrderListByZipCode return =" + jsonStr);        
         return jsonStr;
 	}
