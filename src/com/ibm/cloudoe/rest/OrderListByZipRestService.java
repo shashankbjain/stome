@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import org.json.simple.JSONArray;
 import org.codehaus.jackson.map.ObjectMapper;
 import com.ibm.cloudoe.domain.Order;
+import com.ibm.cloudoe.domain.OrderStatusFV;
 import com.ibm.cloudoe.service.OrderService;
 
 /**
@@ -30,7 +31,7 @@ public class OrderListByZipRestService
 	{
 		System.out.println("OrderListRestService:: getOrderListByZipCode");
 		OrderService os = new OrderService();
-        List<Order>  orderList = os.getAllOrdersByPostalCode(zipcode);
+        List<Order>  orderList = os.getAllOrdersByPostalCodeAndStatus(zipcode, OrderStatusFV.AVAILABLE);
         
         String jsonStr = "";
 		try
