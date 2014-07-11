@@ -96,7 +96,7 @@ public class OrderService
 				System.out.println(" OrderService:: processOrderPickupRequest :: Order Status is available");				
 				pickupOrderList.add(ord);
 				ord.setStatus(OrderStatusFV.READY);
-				ord.setPicker("pickerName");
+				ord.setPicker(pickerName);
 			}
 			System.out.println(" OrderService:: processOrderPickupRequest 	Order Detail = " + ord.toString());			
 		}
