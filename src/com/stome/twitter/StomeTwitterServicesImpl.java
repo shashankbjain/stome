@@ -46,10 +46,16 @@ public class StomeTwitterServicesImpl implements IStomeTwitterServices {
 			String stomeOrderListUrl = "http://mastome.mybluemix.net/tiny.jsp?zipcode="+zipCode+"pickername"+
 			dmsg.getSenderScreenName();
 
-			//String tinyUrl = createTinyUrl(stomeOrderListUrl);
+			String tinyUrl = createTinyUrl(stomeOrderListUrl);
 
 			try {
-				twt.sendDirectMessage(dmsg.getSenderId(), stomeOrderListUrl);
+				//twt.sendDirectMessage(dmsg.getSenderId(), stomeOrderListUrl);
+				String msg = "@" + dmsg.getSenderId() + " " + tinyUrl;
+				System.out.println("sending back tweet msg:" + msg);
+				
+				Status status = twt.updateStatus(msg);
+				System.out.println("status:" + status.getText());
+				
 			} catch (TwitterException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
