@@ -4,6 +4,7 @@
 package com.ibm.cloudoe.domain;
 
 import com.ibm.cloudoe.domain.OrderStatusFV;
+
 /**
  * @author Asuresh
  *
@@ -119,9 +120,9 @@ public class Order
 	
 	public String getPickUpConfirmationCode()
 	{	
-		if( OrderStatusFV.READY.equals(this.status)
-				|| OrderStatusFV.PICKED.equals(this.status)
-				|| OrderStatusFV.DELIVERED.equals(this.status))
+		if( OrderStatusFV.READY == this.status
+				|| OrderStatusFV.PICKED == this.status
+				|| OrderStatusFV.DELIVERED == this.status)
 		{
 			String confirmCodeString = picker + this.store.storeName;
 			return Integer.toString(
@@ -132,8 +133,8 @@ public class Order
 	
 	public String getDeliveryConfirmationCOde()
 	{
-		if( OrderStatusFV.PICKED.equals(this.status)
-				|| OrderStatusFV.DELIVERED.equals(this.status))
+		if( OrderStatusFV.PICKED == this.status
+				|| OrderStatusFV.DELIVERED == this.status)
 		{
 			return Integer.toString(
 				Math.abs(this.orderNumber.hashCode()));

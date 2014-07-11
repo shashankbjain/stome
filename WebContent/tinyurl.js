@@ -4,8 +4,11 @@ var Grid1Store = new Ext.data.Store({
 	  proxy: {
 						timeout : 120000,
 						type: 'rest',
-						url: 'stome/getOrderList',
+						url: 'stome/getOrderListByZip',
 						method: 'GET',
+						extraParams : {
+						zipcode : zipCode
+						},
 						headers :
 						{
 							'accept' : 'application/json'
@@ -40,24 +43,30 @@ var Grid1Store = new Ext.data.Store({
                     	//var gridrecord = grid.getSelectionModel().getSelected();
                         //name += (name===''?'':'')+selection[i].get('id');
                     }
-                    console.log('order Ids', orderIds);
-	            }
-		 
-			 	/*Ext.Ajax.request({
-					url : 'http://www.google.com',
-					params : orderids,
-					method : httpMethod,
-					success : function(response)
+                   Ext.Ajax.request({
+					timeout : 120000,
+					url: 'stome/pickupOrder',
+					 method: 'GET',
+					params: {
+						tcorderid: orderIds,
+						pickername: pickerName
+					
+					},
+					success: function (response)
 					{
-						if(callback) callback(theStore, response, true, grid);
+						
+						var decodedResponse = Ext.decode( response.responseText );
+						console.log('order Ids', decodedResponse);
+					
 					},
 					failure : function(response)
 					{
-						if(callback) callback(theStore, response, false, grid);
+						var decodedResponse = Ext.decode( response.responseText );
+						console.log('order Ids', decodedResponse);
 					}
-				});*/
-		 
-	        });
+				});
+                    console.log('order Ids', orderIds);
+	            }});
 		
 		var columnSelectionModel = Ext.create('Ext.selection.CheckboxModel', {
 		        columns: [{

@@ -30,9 +30,8 @@ public class StomeServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		
-		
-		StoreAndOrderLoader.initialize(config.getServletContext().getRealPath("/")); 
+		System.out.println("StomeServlet servlet initialied " );
+		StoreAndOrderLoader.initialize(); 
 		TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
 		twitterStream.addListener(new StomeTwitterServicesImpl());
 		// sample() method internally creates a thread which manipulates
