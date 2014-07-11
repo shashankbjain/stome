@@ -32,7 +32,8 @@ public class PickupOrderRestService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String pickupOrder(@QueryParam("tcorderid") String tcorderid,
-			@QueryParam("pickername") String pickername) 
+			@QueryParam("pickername") String pickername, 
+			@QueryParam("pickerid") Long pickerid) 
 	{
 		OrderService os = new OrderService();
 		
@@ -43,7 +44,7 @@ public class PickupOrderRestService
 		List<String> orderArrayList = Arrays.asList(orderListArray); 
 		
         List<Order>  orderList = os.processOrderPickupRequest(orderArrayList,pickername);
-        sendPickupConfirmationCode(pickername, orderList);
+        sendPickupConfirmationCode(pickerid, orderList);
         
         String jsonStr = "";
 		try
@@ -62,10 +63,10 @@ public class PickupOrderRestService
 	}
 	
 	
-	protected void sendPickupConfirmationCode(String pickerName, List<Order> orderList)
+	protected void sendPickupConfirmationCode(Long pickerid, List<Order> orderList)
 	{
 		System.out.println("PickupOrderRestService");
-		System.out.println("Picker = " + pickerName);
+		System.out.println("Picker ID = " + pickerid);
 		
 		Map<String, List<String>> pickConf = new HashMap<String, List<String>>();
         
@@ -106,10 +107,10 @@ public class PickupOrderRestService
         		if( pickConf.get(pickConfCode) != null)
         		{
         			String orderString = StringUtils.join(pickConf.get(pickConfCode), ",");
-        			String pickupConfMsg = "Pickup Conf#"+pickConfCode+", Orders#"+orderString;
+        			String pickupConfMsg = "Pickup Conf#"+pickConfCode+" Orders#"+orderString;
         			System.out.println("Order String# " + orderString);
         			System.out.println("Pickup Confirmation Message# " + pickupConfMsg);
-        			twitterService.sendOrderPickupNumbers(pickerName, pickupConfMsg);
+        			twitterService.sendOrderPickupNumbers(pickerid, pickupConfMsg);
         		}
         	}
         }

@@ -44,7 +44,7 @@ public class StomeTwitterServicesImpl implements IStomeTwitterServices {
 			Twitter twt = getTwitterInstance();
 
 			String stomeOrderListUrl = "http://mastome.mybluemix.net/tiny.jsp?zipcode="+zipCode+"&pickername="+
-			dmsg.getSenderScreenName();
+			dmsg.getSenderScreenName()+"&pcikerid="+dmsg.getSenderId();
 
 			String tinyUrl = createTinyUrl(stomeOrderListUrl);
 
@@ -221,7 +221,7 @@ public class StomeTwitterServicesImpl implements IStomeTwitterServices {
 	}
 
 	@Override
-	public void sendOrderPickupNumbers(String userId, String pickupConf) {
+	public void sendOrderPickupNumbers(Long userId, String pickupConf) {
 
 		Twitter twitter = getTwitterInstance();
 

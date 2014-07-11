@@ -7,7 +7,7 @@ public interface IStomeTwitterServices extends UserStreamListener{
 	
 	public void sendFollowRequest(User aUser) ;
 	
-	public void sendOrderPickupNumbers(String userId , String pickupConf) ;
+	public void sendOrderPickupNumbers(Long userId , String pickupConf) ;
 	
 	public void sendDeliveryConfirmMsg(String userId , String code) ;
 	
