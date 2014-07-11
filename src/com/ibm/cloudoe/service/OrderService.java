@@ -97,24 +97,33 @@ public class OrderService
 		return pickupOrderList;
 	}
 	
-	synchronized public boolean confirmOrderPickupRequest(
-			String orderNumber, String pickerName, String pickupCode)
+	synchronized public List<Order> confirmOrderPickupRequest(
+			List<String> orderNumberList, String pickerName, String pickupCode)
 	{
-		boolean pickUpSucessful = false;
+		System.out.println(" OrderService:: confirmOrderPickupRequest");
+		System.out.println("pickerName = " + pickerName);
+		System.out.println("pickupCode = " + pickupCode);
 		
-		Order ord = orderMap.get(orderNumber);
+		List<Order> orderList = new ArrayList<Order>();
 		
-		if( ord != null && pickupCode.equalsIgnoreCase(
-				ord.getPickUpConfirmationCode()))
+		for(String orderNumber : orderNumberList)
 		{
-			pickUpSucessful = true;
-			ord.setStatus(OrderStatusFV.PICKED);
-			PickupConfirmationService service = new PickupConfirmationService();
-			service.notifyEndCustomer(
+			Order ord = orderMap.get(orderNumber);
+			System.out.println("Order = " + orderNumber);
+			
+			if( ord != null && pickupCode.equalsIgnoreCase(
+				ord.getPickUpConfirmationCode()))
+			{
+				System.out.println("Order = " + orderNumber + " Picked.");
+				orderList.add(ord);
+				ord.setStatus(OrderStatusFV.PICKED);
+				PickupConfirmationService service = new PickupConfirmationService();
+				service.notifyEndCustomer(
 				ord.getAddress().getContact(), orderNumber, pickerName);
+			}
 		}
 		
-		return pickUpSucessful;
+		return orderList;
 	}
 	
 	synchronized public boolean deliveryConfirmationRequest(
