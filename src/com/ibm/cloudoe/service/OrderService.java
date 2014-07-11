@@ -42,14 +42,21 @@ public class OrderService
 			String postalCode)
 	{
 		System.out.println(" OrderService:: getAllOrdersByPostalCode  START");		
+		System.out.println(" Search Postal Code = " + postalCode);
 		List<Order> orderList = new ArrayList<Order>();
 		
 		Iterator<Order> itr = orderMap.values().iterator();
 		while(itr.hasNext())
 		{
 			Order o = itr.next();
+			System.out.println("Order = " + o.getOrderNumber());
+			System.out.println("Delivery Postal Code = " + o.getDeliveryPostalCode());
 			if(o.getDeliveryPostalCode().equals(postalCode))
+			{
+				System.out.println("Order " + o.getOrderNumber() + 
+						"selected for zip " + postalCode);
 				orderList.add(o);
+			}
 			
 			System.out.println(" OrderService:: getAllOrdersByPostalCode  Order Detail " + o.toString());
 		}

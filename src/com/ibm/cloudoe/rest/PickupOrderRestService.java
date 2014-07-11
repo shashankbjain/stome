@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -24,8 +24,8 @@ public class PickupOrderRestService
 {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String pickupOrder(@HeaderParam("tcorderid") String tcorderid,
-			@HeaderParam("pickername") String pickername) 
+	public String pickupOrder(@QueryParam("tcorderid") String tcorderid,
+			@QueryParam("pickername") String pickername) 
 	{
 		OrderService os = new OrderService();
 		

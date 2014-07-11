@@ -6,7 +6,7 @@ package com.ibm.cloudoe.rest;
 import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -26,7 +26,7 @@ public class OrderListByZipRestService
 {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getOrderListByZipCode(@HeaderParam("zipcode") String zipcode) 
+	public String getOrderListByZipCode(@QueryParam("zipcode") String zipcode) 
 	{
 		System.out.println("OrderListRestService:: getOrderListByZipCode");
 		OrderService os = new OrderService();
